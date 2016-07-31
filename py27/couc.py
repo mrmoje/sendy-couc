@@ -90,5 +90,31 @@ def get_detour_ratio(**kwargs):
 
     return round((pl_length(ad_bc_overlap)*2)/(pl_length(ad)+pl_length(bc)), 4)
 
+
+def main():
+    try:
+        parser = argparse.ArgumentParser(description='Meh.')
+        parser.add_argument('-a', '--ad', help=u'AD geo-polyline')
+        parser.add_argument('-b', '--bc', help=u'BC geo-polyline')
+        parser.add_argument('-t', '--threshold', default=.8, type=float,
+                            help=u'Your acceptable "detour ratio" threshold')
+
+        args = parser.parse_args()
+
+        detour_ratio = get_detour_ratio(ad=args.ad, bc=args.bc)
+
+        print ('Detour Ratio = {}\n and is thus {}acceptable '
+               'given your threshold of {}').format(
+                    detour_ratio,
+                    'not ' if detour_ratio >= args.threshold else '',
+                    args.threshold)
+
+        return 0
+    except KeyboardInterrupt:
+        return 1
+    except Exception as e:
+        print e
+        return 2
+
 if __name__ == '__main__':
-    pass
+    sys.exit(main())
