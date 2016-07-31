@@ -57,11 +57,12 @@ The algorithm takes worst case O(ad * bc) time.
 #### Python
 Implementation resides in <py27/couc.py>. Run it like so:-
 
-`./test.py -ad "[[1,2],[17,2]]" -bc "[[3,2],[14,2]] -d 80 -r"`
+`./couc.py -ad "[[1,2],[17,2]]" -bc "[[3,2],[14,2]]" -t 0.8`
+`(or couc.py on Windows)`
 
 Where `-ad` and `-bc` are your polylines expressed as json arrays of 2 element
 arrays (or tuples if you like) and `-d` is your acceptable "detour ratio"
-threshold with valid i/p from 0-1. The `-r` toggles.
+threshold with valid i/p from 0-1.
 
 Test cases reside in the <py27/test.py>. Takes no arguments. Run like so:-
 `./test.py` (or `test.py` on Windows).
