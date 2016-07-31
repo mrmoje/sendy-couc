@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import sys, argparse, json
 
 
 def line_length(clen, line):
@@ -101,12 +102,13 @@ def main():
 
         args = parser.parse_args()
 
-        detour_ratio = get_detour_ratio(ad=args.ad, bc=args.bc)
+        detour_ratio = get_detour_ratio(
+                ad=json.loads(args.ad), bc=json.loads(args.bc))
 
-        print ('Detour Ratio = {}\n and is thus {}acceptable '
-               'given your threshold of {}').format(
+        print ('Detour Ratio = {} and is thus {}acceptable '
+               'given the threshold {}').format(
                     detour_ratio,
-                    'not ' if detour_ratio >= args.threshold else '',
+                    'not ' if detour_ratio < args.threshold else '',
                     args.threshold)
 
         return 0
