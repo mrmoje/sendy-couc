@@ -21,11 +21,9 @@ The acceptable detour can be specified as a detour ratio threshold.
 points of the overlapping polyline.
 
 #### The algorithm
-The first (intuitive) algorithm that comes to mind is of a "brute force"
-kind where algorithm that goes a little something like this:-
+It's "brute force"-ish and it goes a little something like this:-
 
-  ----
-
+  ```
   1. initialize ad polyline from user input
   2. initialize bc polyline from user input
   3. initialize overlap polyline to empty points list
@@ -48,10 +46,9 @@ kind where algorithm that goes a little something like this:-
   5. get ad length
   6. get bc length
   7. return => overlap_length x 2 / (ad_length + bc_length )... aka detour ratio as defined above
+  ```
 
-  ---
-
-The algorithm takes worst case O(ad * bc) time.
+The algorithm takes worst case `O(ad * bc)` time.
 
 ### Implementation:-
 #### Python
