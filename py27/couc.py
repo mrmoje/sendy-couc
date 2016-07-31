@@ -2,17 +2,23 @@
 
 
 def line_length(clen, line):
+    ''' Line length by Pythagoras theorem '''
     return clen + (
         (line[1][0] - line[0][0])**2 +
         (line[1][1] - line[0][1])**2
     )**.5
 
 def pl_length(polyline):
+    ''' Gets polyline length by adding up segment lengths '''
     return reduce(
         line_length,
         [(s, e) for s, e in zip(polyline[:-1], polyline[1:])], 0)
 
 def get_quad_area(q):
+    '''
+    Gets the area of a regular quadilateral defined by 2 line segments.
+    If area is zero, the line segments are colinear (and probably overlap)
+    '''
     return abs((
         (q[0][0]*q[1][1] - q[0][1]*q[1][0]) + \
         (q[1][0]*q[2][1] - q[1][1]*q[2][0]) + \
@@ -41,6 +47,9 @@ def get_overlap_start(line1, line2):
     return False
 
 def get_overlap(ad, bc):
+    '''
+    Gets overlap polyline (common to ad & bc)
+    '''
     overlap = []
 
     bc_iterator = iter(zip(bc[:-1], bc[1:]))
@@ -73,6 +82,7 @@ def get_overlap(ad, bc):
 
 
 def get_detour_ratio(**kwargs):
+    ''' works out the "detour ratio" from all geo-polyline lengths '''
     ad = kwargs.get('ad', [])
     bc = kwargs.get('bc', [])
 
